@@ -9,6 +9,11 @@ describe 'MapMessageToKey', ->
     expect(@sut).to.be.an.instanceOf ReturnValue
 
   describe '->onEnvelope', ->
-    describe 'when called with an envelope', ->
-      it 'should return the message', ->
-        expect(@sut.onEnvelope({message: 'anything'})).to.deep.equal 'anything'
+    describe 'when called with a key of foo', ->
+      it 'should map the message to foo', ->
+        envelope =
+          message: 'octopus neighbours'
+          config:
+            key: 'foo'
+
+        expect(@sut.onEnvelope envelope).to.deep.equal foo: 'octopus neighbours'
